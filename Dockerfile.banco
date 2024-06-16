@@ -8,7 +8,7 @@ FROM postgres:latest
 # Environment variables
 ENV POSTGRES_DB=db_name \
     POSTGRES_USER=db_user \
-    POSTGRES_PASSWORD=db_password
+    POSTGRES_PASSWORD=12345
 
 # Copy custom initialization scripts
 COPY init.sql /docker-entrypoint-initdb.d/

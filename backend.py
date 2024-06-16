@@ -9,7 +9,7 @@ DB_HOST = 'banco'  # Nome do serviço do contêiner do banco de dados no Docker 
 DB_PORT = '5432'    # Porta padrão do PostgreSQL
 DB_NAME = 'db_name' # Nome do banco de dados
 DB_USER = 'db_user' # Usuário do banco de dados
-DB_PASSWORD = 'db_password' # Senha do banco de dados
+DB_PASSWORD = '12345' # Senha do banco de dados
 
 # Classe que implementa o serviço gRPC Messenger
 class MessengerServicer(messenger_pb2_grpc.MessengerServicer):
@@ -34,7 +34,7 @@ class MessengerServicer(messenger_pb2_grpc.MessengerServicer):
                 sql = "INSERT INTO messages (client_name, message) VALUES (%s, %s)"
                 cursor.execute(sql, (sender, content))
                 conn.commit()
-                print(f"Mensagem recebida do cliente {sender}: {content}. Armazenada no banco de dados.")
+                print(f"Mensagem recebida do cliente {sender}: {content}.")
         except psycopg2.Error as e:
             print(f"Erro ao inserir mensagem no banco de dados: {e}")
         finally:
