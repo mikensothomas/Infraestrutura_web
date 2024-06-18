@@ -30,11 +30,11 @@ class MessengerServicer(messenger_pb2_grpc.MessengerServicer):
         try:
             # Cria um cursor para executar operações SQL
             with conn.cursor() as cursor:
+                print(f"Mensagem recebida do cliente {sender}: {content}.")
                 # Insere a mensagem na tabela messages
                 sql = "INSERT INTO messages (client_name, message) VALUES (%s, %s)"
                 cursor.execute(sql, (sender, content))
                 conn.commit()
-                print(f"Mensagem recebida do cliente {sender}: {content}.")
         except psycopg2.Error as e:
             print(f"Erro ao inserir mensagem no banco de dados: {e}")
         finally:

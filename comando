@@ -1,3 +1,6 @@
 -- psql -U db_user -d db_name
 -- \dt
 -- SELECT * FROM messages;
+-- docker stop $(docker ps -aq)
+-- docker rm $(docker ps -aq)
+-- docker exec -it frontend /bin/sh
