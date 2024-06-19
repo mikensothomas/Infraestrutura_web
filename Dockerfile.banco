@@ -3,7 +3,7 @@ FROM ubuntu:latest
 # Dockerfile.banco
 
 # Use the official PostgreSQL image from Docker Hub
-FROM postgres:latest
+FROM postgres:13
 
 # Environment variables
 ENV POSTGRES_DB=db_name \
