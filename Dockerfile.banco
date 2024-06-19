@@ -1,13 +1,11 @@
-FROM ubuntu:latest
-
-# Dockerfile.banco
+FROM ubuntu:20.04
 
 # Use the official PostgreSQL image from Docker Hub
 FROM postgres:13
 
 # Environment variables
-ENV POSTGRES_DB=db_name \
-    POSTGRES_USER=db_user \
+ENV POSTGRES_DB=banco_grpc \
+    POSTGRES_USER=usuario \
     POSTGRES_PASSWORD=12345
 
 # Copy custom initialization scripts

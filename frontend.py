@@ -4,7 +4,7 @@ import messenger_pb2_grpc
 
 def send_message(stub, sender, content):
     response = stub.SendMessage(messenger_pb2.Message(sender=sender, content=content))
-    print("Mensagem enviada para o servidor.")
+    print("Mensagem enviada com sucesso.")
 
 def main():
     channel = grpc.insecure_channel('100.0.0.10:50051')
@@ -12,8 +12,8 @@ def main():
     
     sender = input("Digite seu nome: ")
     while True:
-        message = input("Digite sua mensagem (ou 'sair' para sair): ")
-        if message.lower() == 'sair':
+        message = input("Digite sua mensagem (ou 's' para sair): ")
+        if message.lower() == 's':
             break
         send_message(stub, sender, message)
     

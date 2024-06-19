@@ -1,6 +1,13 @@
--- psql -U db_user -d db_name
+-- psql -U usuario -d banco_grpc
 -- \dt
--- SELECT * FROM messages;
+-- SELECT * FROM mensagem;
 -- docker stop $(docker ps -aq)
 -- docker rm $(docker ps -aq)
 -- docker exec -it frontend /bin/sh
+-- docker volume prune -f
+-- DELETE FROM mensagens;
+-- chmod +x cleanup_docker.sh
+./cleanup_docker.sh
+-- docker volume rm $(docker volume ls -q)
+-- docker volume ls
+

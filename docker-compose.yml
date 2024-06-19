@@ -26,6 +26,11 @@ services:
       context: .
       dockerfile: Dockerfile.banco
     container_name: banco
+    image: postgres:13
+    environment:
+      POSTGRES_DB: banco_grpc
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: 12345
     privileged: true
     networks:
       rede_web:
