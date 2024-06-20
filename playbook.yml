@@ -27,7 +27,7 @@
 
     - name: COPIAR OS ARQUIVOS DO PROJETO PARA O BACKEND
       copy:
-        src: "docke_grpc_banco/{{ item }}"
+        src: "docker_grpc_banco/{{ item }}"
         dest: /opt/messenger_app/
       with_items:
         - frontend.py
