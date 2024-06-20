@@ -7,7 +7,7 @@ def send_message(stub, sender, content):
     print("Mensagem enviada com sucesso.")
 
 def main():
-    channel = grpc.insecure_channel('100.0.0.10:50051')
+    channel = grpc.insecure_channel('192.168.1.10:50051')
     stub = messenger_pb2_grpc.MessengerStub(channel)
     
     sender = input("Digite seu nome: ")

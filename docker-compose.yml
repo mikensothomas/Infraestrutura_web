@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  servidor:
+  backend:
     build:
       context: .
       dockerfile: Dockerfile.backend
@@ -9,7 +9,7 @@ services:
     privileged: true
     networks:
       rede_web:
-        ipv4_address: 100.0.0.10
+        ipv4_address: 192.168.1.10
 
   frontend:
     build:
@@ -19,7 +19,7 @@ services:
     privileged: true
     networks:
       rede_web:
-        ipv4_address: 100.0.0.2
+        ipv4_address: 192.168.1.11
 
   banco:
     build:
@@ -34,7 +34,7 @@ services:
     privileged: true
     networks:
       rede_web:
-        ipv4_address: 100.0.0.3
+        ipv4_address: 192.168.1.12
     ports:
       - "5432:5432"
     volumes:
@@ -45,7 +45,7 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 100.0.0.0/24
+        - subnet: 192.168.1.0/24
 
 volumes:
   postgres_data:
