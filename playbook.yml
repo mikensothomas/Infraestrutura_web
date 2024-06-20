@@ -1,0 +1,99 @@
+---
+- name: IMPLEMENTAR APLICAÇÃO DE MENSAGEM
+  hosts: localhost
+  become: true
+  become_method: sudo
+  become_user: root
+
+  vars_files:
+    - vars/vars.yml
+
+  tasks:
+    - name: O CACHE ESTÁ ATUALIZADO
+      apt:
+        update_cache: yes
+
+    - name: REMOVER PACOTES CONFLITANTES
+      apt:
+        name:
+          - containerd
+          - containerd.io
+        state: absent
+      ignore_errors: yes
+
+    - name: DESMARCAR PACOTES RETIDOS
+      shell: |
+        for pkg in $(apt-mark showhold); do
+          apt-mark unhold $pkg || true
+        done
+      ignore_errors: yes
+
+    - name: CORRIGIR PACOTES QUEBRADOS
+      shell: apt-get install -f -y
+      ignore_errors: yes
+
+    - name: INSTALAR O DOCKER E DOCKER-COMPOSE
+      apt:
+        name: 
+          - docker.io
+          - docker-compose
+        state: present
+
+    - name: O DOCKER ESTÁ RODANDO
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: CRIAR DIRETÓRIO DE PROJETO
+      file:
+        path: /opt/messenger_app
+        state: directory
+        mode: '0755'
+
+    - name: COPIAR OS ARQUIVOS DO PROJETO PARA O BACKEND
+      copy:
+        src: "docke_grpc_banco/{{ item }}"
+        dest: /opt/messenger_app/
+      with_items:
+        - frontend.py
+        - backend.py
+        - messenger.proto
+        - Dockerfile.frontend
+        - Dockerfile.backend
+        - Dockerfile.banco
+        - docker-compose.yml
+        - init.sql
+        - requirements.txt
+
+    - name: INICIAR CONTEINER DOCKER
+      shell: docker-compose up --build -d
+      args:
+        chdir: /opt/messenger_app
+
+    - name: VERIFICAR SE O CONTEINER DO BANCO ESTÁ EM EXECUÇÃO
+      community.docker.docker_container_info:
+        name: banco
+      register: banco_status_info
+
+    - name: DEBUG BANCO STATUS
+      debug:
+        var: banco_status_info.containers[0].State.Status
+
+    - name: VERIFICAR SE O CONTEINER DO BACKEND ESTÁ EM EXECUÇÃO
+      community.docker.docker_container_info:
+        name: backend
+      register: backend_status_info
+
+    - name: DEBUG BACKEND STATUS
+      debug:
+        var: backend_status_info.containers[0].State.Status
+
+    - name: VERIFICAR SE O CONTEINER DO FRONTEND ESTÁ EM EXECUÇÃO
+      community.docker.docker_container_info:
+        name: frontend
+      register: frontend_status_info
+
+    - name: DEBUG FRONTEND STATUS
+      debug:
+        var: frontend_status_info.containers[0].State.Status
