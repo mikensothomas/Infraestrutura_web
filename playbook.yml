@@ -13,21 +13,6 @@
       apt:
         update_cache: yes
 
-    # - name: REMOVER PACOTES CONFLITANTES
-    #   apt:
-    #     name:
-    #       - containerd
-    #       - containerd.io
-    #     state: absent
-    #   ignore_errors: yes
-
-    # - name: DESMARCAR PACOTES RETIDOS
-    #   shell: |
-    #     for pkg in $(apt-mark showhold); do
-    #       apt-mark unhold $pkg || true
-    #     done
-    #   ignore_errors: yes
-
     - name: O DOCKER ESTÁ RODANDO
       service:
         name: docker
