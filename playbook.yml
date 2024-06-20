@@ -4,6 +4,8 @@
   become: true
   become_method: sudo
   become_user: root
+  vars:
+    ansible_become_pass: "17011994yeyeye"
 
   vars_files:
     - vars/vars.yml
