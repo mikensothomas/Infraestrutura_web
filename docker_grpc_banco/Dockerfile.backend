@@ -1,4 +1,3 @@
-# Use a base image do Ubuntu 20.04
 FROM ubuntu:20.04
 
 # Instalar dependências do sistema, adicionar o PPA para Python 3.9 e instalar Python 3.9

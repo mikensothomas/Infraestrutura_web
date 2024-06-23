@@ -1,8 +1,8 @@
 import grpc
-from concurrent import futures
+from concurrent import futures #Executa tarefa assiclona
 import messenger_pb2
 import messenger_pb2_grpc
-import psycopg2
+import psycopg2 #Permite a conexão com posgreSQL
 
 DB_HOST = 'banco'
 DB_PORT = '5432'

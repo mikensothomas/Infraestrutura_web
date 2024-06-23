@@ -3,10 +3,10 @@ version: '3.8'
 services:
   backend:
     build:
-      context: .
+      context: . #você está dizendo ao Docker para usar o diretório onde o arquivo docker-compose.yml está localizado como o ponto de partida para a build.
       dockerfile: Dockerfile.backend
     container_name: backend
-    privileged: true
+    privileged: true #O contêiner tem acesso a todos os dispositivos do host. 
     networks:
       rede_web:
         ipv4_address: 192.168.1.10
@@ -36,7 +36,7 @@ services:
 
 networks:
   rede_web:
-    driver: bridge
+    driver: bridge #Isola os contêineres portanto eles podem se comunicar entre eles.
     ipam:
       config:
         - subnet: 192.168.1.0/24

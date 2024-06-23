@@ -1,16 +1,13 @@
 FROM ubuntu:20.04
 
-# Use the official PostgreSQL image from Docker Hub
+#imagem
 FROM postgres:13
 
-# Environment variables
 ENV POSTGRES_DB=banco_grpc \
     POSTGRES_USER=usuario \
     POSTGRES_PASSWORD=12345
 
-# Copy custom initialization scripts
 COPY init.sql /docker-entrypoint-initdb.d/
 
-# Expose the PostgreSQL port
 EXPOSE 5432
 

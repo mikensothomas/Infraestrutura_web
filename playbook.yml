@@ -4,8 +4,6 @@
   become: true
   become_method: sudo
   become_user: root
-  vars:
-    ansible_become_pass: "17011994yeyeye"
 
   vars_files:
     - vars/vars.yml
@@ -27,7 +25,7 @@
         state: directory
         mode: '0755'
 
-    - name: COPIAR OS ARQUIVOS DO PROJETO PARA O BACKEND
+    - name: COPIAR OS ARQUIVOS DO PROJETO
       copy:
         src: "docker_grpc_banco/{{ item }}"
         dest: /opt/messenger_app/
