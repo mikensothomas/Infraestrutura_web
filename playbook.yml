@@ -1,6 +1,6 @@
 ---
 - name: IMPLEMENTAR APLICAÇÃO DE MENSAGEM
-  hosts: localhost
+  hosts: grupo1
   become: true
   become_method: sudo
   become_user: root
