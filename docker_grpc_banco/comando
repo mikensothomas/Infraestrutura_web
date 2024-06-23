@@ -11,6 +11,6 @@
 -- docker volume rm $(docker volume ls -q)
 -- docker volume ls
 -- ansible-playbook playbook.yml
--- docker volume rm -f 098bdcd993cdc8571e691a3b7d3c9d44efb47d93a8fc5b7cdad5ccc9d5108a58
+-- docker volume rm -f
 
 
