@@ -13,5 +13,6 @@
 -- ansible-playbook playbook.yml
 -- docker volume rm -f
 -- ansible-playbook -i ansible.cfg, playbook.yml
+-- ansible-playbook -i hosts playbook.yml
 
 

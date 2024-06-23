@@ -1,2 +1,2 @@
-[localhost]
+[grupo1]
 localhost ansible_connection=local
