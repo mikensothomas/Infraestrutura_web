@@ -48,14 +48,11 @@
     - name: VERIFICAR SE O CONTEINER DO BANCO ESTÁ EM EXECUÇÃO
       community.docker.docker_container_info:
         name: banco
-      register: banco_status_info
 
     - name: VERIFICAR SE O CONTEINER DO BACKEND ESTÁ EM EXECUÇÃO
       community.docker.docker_container_info:
         name: backend
-      register: backend_status_info
 
     - name: VERIFICAR SE O CONTEINER DO FRONTEND ESTÁ EM EXECUÇÃO
       community.docker.docker_container_info:
         name: frontend
-      register: frontend_status_info
