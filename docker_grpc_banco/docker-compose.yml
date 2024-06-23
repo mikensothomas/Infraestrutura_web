@@ -27,18 +27,12 @@ services:
       dockerfile: Dockerfile.banco
     container_name: banco
     image: postgres:13
-    environment:
-      POSTGRES_DB: banco_grpc
-      POSTGRES_USER: usuario
-      POSTGRES_PASSWORD: 12345
     privileged: true
     networks:
       rede_web:
         ipv4_address: 192.168.1.12
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
 networks:
   rede_web:
@@ -46,6 +40,3 @@ networks:
     ipam:
       config:
         - subnet: 192.168.1.0/24
-
-volumes:
-  postgres_data:
